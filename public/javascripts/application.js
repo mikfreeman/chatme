@@ -12,7 +12,7 @@
  function recievedMessage(data)
  {	
 
- 	$('#messages').append(data.message + "\n");
+ 	$('#messages').append("<p>" + data.message + "</p>");
  }
 
 $(document).ready(function(){
