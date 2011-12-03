@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
-require.paths.push('/usr/local/lib/node_modules');
+//require.paths.push('/usr/local/lib/node_modules');
 var express = require('express');
 var io = require('socket.io').listen(80);
 
