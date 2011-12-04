@@ -1,0 +1,5 @@
+Chatme is a NodeJs chat server that using socket.io.
+
+Express is used to render the web client.
+
+I'm using this to learn NodeJs
