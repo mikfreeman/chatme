@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 	$('#sendButton').click(sendMessage);
 
-	socket = io.connect('http://localhost:80',{transports:['websocket']});
+	socket = io.connect('http://localhost:80');
 	
   	socket.on('chat', recievedMessage);
   
