@@ -6,9 +6,9 @@
 var express = require('express');
 var io = require('socket.io').listen(80);
 
-io.configure(function () {
-  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
-});
+//io.configure(function () {
+//  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
+//});
 
 io.sockets.on('connection', function (socket) {
 
