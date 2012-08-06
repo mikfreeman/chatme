@@ -1,4 +1,4 @@
-  var socket;
+ var socket;
 
  function sendMessage()
  {
@@ -24,6 +24,12 @@
 $(document).ready(function(){
 
 	$('#sendButton').click(sendMessage);
+	
+	$(document).keypress(function(e) {
+    	if(e.which == 13) {
+        	sendMessage();
+    	}
+	});
 
 	socket = io.connect('http://localhost:80');
 	
