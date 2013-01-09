@@ -14,8 +14,7 @@ ChatMeClient.prototype.recievedMessage = function(data)
 {	
  	$('#messages').append("<div class='alert-message block-message info'><p>" + data.message + "</p></div>");
  	
- 	//Bit annoying having to do this. Scope is lost somewhere.
-	ChatMeClient.prototype.scrollToBottom();
+	this.scrollToBottom();
 };
  
 ChatMeClient.prototype.scrollToBottom = function ()

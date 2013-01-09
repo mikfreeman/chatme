@@ -12,7 +12,9 @@ $(document).ready(function(){
     	}
 	});
 	
-  	socket.on('chat', chatMeClient.recievedMessage);
+  	socket.on('chat', function(data){
+  		chatMeClient.recievedMessage(data);
+  	});
   
  });
  
