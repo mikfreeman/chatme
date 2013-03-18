@@ -1,9 +1,8 @@
 var express = require('express')
   , app = express()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
+  , server = require('http').createServer(app);
 
-
+var chat_server = require('./lib/chat_server');
 
 //io.configure(function () {
 //  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
@@ -32,10 +31,6 @@ app.get('/', function(req, res){
   res.sendfile( __dirname + '/public/html/chatme.html');
 });
 
-io.sockets.on('connection',function(socket){
-  socket.on('joinRoom', function(room) {
-    socket.emit('roomJoined', room);
-  });
-});
 
 server.listen(3000);
+chatServer = new chat_server(server);
