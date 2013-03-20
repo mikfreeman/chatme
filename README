@@ -1,5 +1,16 @@
-Chatme is a NodeJs chat server that using socket.io.
+Chatme
+============
 
-Express is used to render the web client.
+A NodeJs chat server that uses web sockets for a real time chat experience.
 
-I'm using this to learn NodeJs
+Setup
+============
+
+Install NodeJs from http://nodejs.org/
+cd chatme
+npm install
+node server.js
+open two browser windows at localhost:3000
+Start chatting.
+
+
