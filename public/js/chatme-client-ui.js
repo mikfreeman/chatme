@@ -2,14 +2,17 @@ var io = io.connect();
 var currentRoom;
 var chatClient;
 
-function displayMessage(message) {
-	$(".message-area").append("<p class='alert alert-info'>" + message + "</p>");
+function displayMessage(message,options) {
+	var displayClass = options && options.displayClass ? options.displayClass : "alert-info"
+	$(".message-area").append("<p class='alert " + displayClass + "'>" + message + "</p>");
 };
 
 function sendMessage() {
 	var text = $("#message").val();
 	chatClient.sendMessage(currentRoom,text);
-	displayMessage(text);
+	displayMessage(text,{
+		displayClass : 'alert-success'
+	});
 	$("#message").val('');
 };
 
@@ -18,7 +21,9 @@ $(document).ready(function() {
 	
 	$.subscribe("roomJoined", function(event,room){
 		currentRoom = room;
-		displayMessage("Welcome to " + room);
+		displayMessage("Welcome to " + room,{
+			displayClass : 'alert-block'	
+		});
 
 		$('nav-list > li,.active').removeClass('active');
 		$("#" + room.toLowerCase().replace(/\s+/g,' ')).addClass('active');
