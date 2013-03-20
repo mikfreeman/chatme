@@ -8,8 +8,6 @@ var chat_server = require('./lib/chat_server');
 //  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
 //});
 
-// Configuration
-
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -25,12 +23,13 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-// Routes
-
 app.get('/', function(req, res){
   res.sendfile( __dirname + '/public/html/chatme.html');
 });
 
-
 server.listen(3000);
 chatServer = new chat_server(server);
+
+chatServer.on('roomJoined', function(room){
+  //We can use this to trigger other events. E.g. Update User count etc
+});

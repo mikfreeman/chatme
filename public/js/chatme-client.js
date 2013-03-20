@@ -5,14 +5,21 @@ var ChatClient = function (io) {
 	io.on('roomJoined', function(room) {
 		$.publish("roomJoined", room);
 	});
+
+	io.on('message', function(message) {
+		$.publish("message", message);
+	});
 };
 
 ChatClient.prototype.joinRoom = function(room) {
 
-	var room = {
-		id : "lobby",
-		description : "Lobby"
-	};
-
   	this.io.emit('joinRoom', room);
+}  
+
+ChatClient.prototype.sendMessage = function(room,text) {
+
+  	this.io.emit('message', {
+  		room : room,
+  		text : text
+  	});
 }  
