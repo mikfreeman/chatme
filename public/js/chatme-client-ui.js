@@ -45,6 +45,8 @@ $(document).ready(function() {
 			addRoom(room);
 		}
 
+		$(".message-area > .alert").remove();
+
 		displayMessage("Welcome to " + room,{
 			displayClass : 'alert-block'	
 		});
