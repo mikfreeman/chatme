@@ -9,6 +9,10 @@ var ChatClient = function (io) {
 	io.on('message', function(message) {
 		$.publish("message", message);
 	});
+
+	io.on('newRoom', function(room) {
+		$.publish("newRoom", room);
+	});
 };
 
 ChatClient.prototype.joinRoom = function(room) {

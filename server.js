@@ -3,6 +3,7 @@ var express = require('express')
   , server = require('http').createServer(app);
 
 var chat_server = require('./lib/chat_server');
+var rooms = [];
 
 //io.configure(function () {
 //  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
@@ -25,6 +26,10 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   res.sendfile( __dirname + '/public/html/chatme.html');
+});
+
+app.get('/rooms', function(req, res){
+  res.json({'rooms' : chatServer.getRooms()});
 });
 
 server.listen(3000);

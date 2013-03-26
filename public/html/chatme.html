@@ -60,11 +60,14 @@
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header" style="margin-bottom:5px">Rooms<button class="btn-mini pull-right"  href="#"><i class="icon-plus"></i></button></li>
-              <li id="lobby" class="active"><a href="#">Lobby</a></li>
-              <li id="programming"><a href="#">Programming</a></li>
-              <li><a href="#">Sci Fi</a></li>
+            <ul id="roomsList" class="nav nav-list">
+              <li class="nav-header" style="margin-bottom:5px">
+                Rooms
+                <button class="btn-mini pull-right"  href="#createRoomModal" data-toggle="modal"><i class="icon-plus"></i></button>
+              </li>
+              <!--li id="lobby" class="active"><a href="#">Lobby</a></li-->
+              <!--li id="programming"><a href="#">Programming</a></li-->
+              <!--li><a href="#">Sci Fi</a></li-->
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -85,6 +88,27 @@
       </footer>
 
     </div><!--/.fluid-container-->
+
+    <div id="createRoomModal" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Add Room</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="roomName">Room Name</label>
+            <div class="controls">
+              <input id="roomName" type="text" class="input-large" placeholder="Room Name ...">
+            </div>
+          </div>  
+        </div>
+      </div>  
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a id="createRoom" href="#" class="btn btn-primary">Create</a>
+      <div>
+    </div>  
 
     <!-- Le javascript
     ================================================== -->
