@@ -1,5 +1,5 @@
 {
-    "name": "Chatme a NodeJs Chat Server and Client"
+    "name": "chatme"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
