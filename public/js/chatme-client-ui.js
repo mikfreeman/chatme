@@ -34,6 +34,12 @@ function loadRooms() {
 	});
 }
 
+function changeNickname() {
+	var nickname = $("#nickname").val();
+	chatClient.changeNickname(nickname);
+	return false;
+}
+
 $(document).ready(function() {
 	chatClient = new ChatClient(io);
 	
@@ -74,6 +80,8 @@ $(document).ready(function() {
 	loadRooms();
 
 	$('#sendButton').click(sendMessage);
+
+	$('#changeNickname').click(changeNickname)
 	
 	$(document).keypress(function(e) {
     	if(e.which == 13) {

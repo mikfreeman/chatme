@@ -15,6 +15,10 @@ var ChatClient = function (io) {
 	});
 };
 
+ChatClient.prototype.changeNickname = function(nickname) {
+  	this.io.emit('changeNickname', nickname);
+}
+
 ChatClient.prototype.joinRoom = function(room) {
 
   	this.io.emit('joinRoom', room);
