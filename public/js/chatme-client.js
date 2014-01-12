@@ -17,6 +17,10 @@ var ChatClient = function (io) {
 	io.on('connected', function(message) {
 		$.publish("message", message);
 	});
+
+	io.on('nicknameChanged', function(nickname) {
+		$.publish("nicknameChanged", nickname);
+	});
 };
 
 ChatClient.prototype.changeNickname = function(nickname) {

@@ -8,6 +8,10 @@ function getRoomId(room) {
 function displayMessage(message,options) {
 	var displayClass = options && options.displayClass ? options.displayClass : "alert-info"
 	$(".message-area").append("<p class='alert " + displayClass + "'>" + message + "</p>");
+	var messageArea = $('.message-area');
+    messageArea.scrollTop(
+        messageArea[0].scrollHeight - messageArea.height()
+    );
 };
 
 function addRoom(room) {
@@ -66,6 +70,10 @@ $(document).ready(function() {
 
 	$.subscribe("newRoom", function(event,room){
 		addRoom(room);
+	});
+
+	$.subscribe("nicknameChanged", function(event,nickname){
+		displayMessage("Succesfully changed nickname to : " + nickname);
 	});
 
 	$('#createRoom').click(function(){
