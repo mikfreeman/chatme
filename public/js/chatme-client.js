@@ -13,6 +13,10 @@ var ChatClient = function (io) {
 	io.on('newRoom', function(room) {
 		$.publish("newRoom", room);
 	});
+
+	io.on('connected', function(message) {
+		$.publish("message", message);
+	});
 };
 
 ChatClient.prototype.changeNickname = function(nickname) {

@@ -1,4 +1,3 @@
-var io = io.connect();
 var currentRoom;
 var chatClient;
 
@@ -41,8 +40,6 @@ function changeNickname() {
 }
 
 $(document).ready(function() {
-	chatClient = new ChatClient(io);
-	
 	$.subscribe("roomJoined", function(event,room){
 		currentRoom = room;
 		
@@ -51,7 +48,9 @@ $(document).ready(function() {
 			addRoom(room);
 		}
 
-		$(".message-area > .alert").remove();
+		if(room != "Lobby") {
+			$(".message-area > .alert").remove();	
+		}
 
 		displayMessage("Welcome to " + room,{
 			displayClass : 'alert-block'	
@@ -76,6 +75,9 @@ $(document).ready(function() {
 			$('#createRoomModal').modal('hide');
 		}
 	});
+
+	var socket = io.connect();
+	chatClient = new ChatClient(socket);
 
 	loadRooms();
 
