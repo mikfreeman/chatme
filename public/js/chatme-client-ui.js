@@ -7,7 +7,7 @@ function getRoomId(room) {
 
 function displayMessage(message,options) {
 	var displayClass = options && options.displayClass ? options.displayClass : "alert-info"
-	$(".message-area").append("<p class='alert " + displayClass + "'>" + message + "</p>");
+	$(".message-area").append("<div class='alert " + displayClass + "' style='padding : 5px;padding-left: 10px;margin-bottom : 10px'>" + message + "</div>");
 	var messageArea = $('.message-area');
     messageArea.scrollTop(
         messageArea[0].scrollHeight - messageArea.height()
@@ -25,6 +25,7 @@ function sendMessage() {
 		displayClass : 'alert-success'
 	});
 	$("#message").val('');
+	return false;
 };
 
 function loadRooms() {
