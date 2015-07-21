@@ -1,40 +1,48 @@
-var express = require('express')
-  , app = express()
-  , server = require('http').createServer(app);
-
 var chat_server = require('./lib/chat_server');
-var rooms = [];
+var http = require('http');
+var express = require('express');
+var path = require('path');
+
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
+var multer = require('multer');
+var errorHandler = require('errorhandler');
 
 //io.configure(function () {
 //  io.set('transports', ['websocket', 'flashsocket', 'xhr-polling']);
 //});
 
-app.configure(function(){
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+var app = express();
+
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(methodOverride());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/public/index.html');
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+app.get('/rooms', function (req, res) {
+    res.json({'rooms': chatServer.getRooms()});
 });
 
-app.configure('production', function(){
-  app.use(express.errorHandler()); 
-});
+if ('development' == app.get('env')) {
+    app.use(errorHandler());
+}
 
-app.get('/', function(req, res){
-  res.sendfile( __dirname + '/public/html/chatme.html');
-});
-
-app.get('/rooms', function(req, res){
-  res.json({'rooms' : chatServer.getRooms()});
-});
-
+var server = http.createServer(app);
 server.listen(3000);
-chatServer = new chat_server(server);
+chatServer = chat_server(server);
 
-chatServer.on('roomJoined', function(room){
-  //We can use this to trigger other events. E.g. Update User count etc
+//Example of event emitting
+chatServer.on('roomJoined', function (room) {
+   console.log(room + ' joined');
 });
